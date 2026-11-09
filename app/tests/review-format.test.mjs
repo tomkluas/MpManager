@@ -1,0 +1,2 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {formatReview} from '../public/review-format.js';
+test('structured review preserves nested findings, plain text and safe legacy fallback',()=>{const text=formatReview({summary:'待核实',issues:[{message:'入口需核实'},'删去夸大表述'],passed:false});assert.match(text,/审核结论：待核实/);assert.match(text,/1\. 说明：入口需核实/);assert.match(text,/是否通过：否/);assert.doesNotMatch(text,/\[object Object\]/);assert.equal(formatReview('原文\n第二行'),'原文\n第二行');assert.match(formatReview('[object Object]'),/未被正确保存/);});

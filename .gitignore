@@ -1,0 +1,20 @@
+/.runtime/
+/archive/
+/operator/
+
+# Local configuration and credentials
+**/.env
+**/.env.*
+!**/.env.example
+**/*.pem
+**/*.key
+**/*.pfx
+**/*.p12
+**/*.encrypted
+
+# Local databases and runtime output
+**/*.sqlite
+**/*.sqlite-*
+**/*.db
+**/*.db-*
+**/*.log

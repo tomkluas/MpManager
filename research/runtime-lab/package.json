@@ -1,0 +1,10 @@
+{
+  "name": "weixinmp-agent-runtime-lab",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Isolated proof of concept; no real platform publishing",
+  "dependencies": {
+    "paperclipai": "2026.1023.0"
+  }
+}

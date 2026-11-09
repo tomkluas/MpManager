@@ -1,0 +1,9 @@
+node_modules/
+npm-cache/
+state/
+logs/
+.env
+artifacts/
+config/*.json
+!config/*.example.json
+materials/

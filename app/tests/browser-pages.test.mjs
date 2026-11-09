@@ -1,0 +1,10 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {releaseSavedEditor} from '../src/browser-pages.mjs';import {evidenceHash} from '../src/wechat-editor.mjs';
+test('cleanup closes only an unchanged completed agent editor, retaining user and modified pages',async()=>{
+ const evidence={title:'已保存标题',body:'已保存正文',digest:'摘要',images:['cdn'],cover:'cover'},account={id:'a',space:3,pageLabel:'saved'};
+ let tabs=[{label:'home',openedBy:'agent',url:'https://mp.weixin.qq.com/cgi-bin/home'},...['user','changed','saved'].map((label,i)=>({label,openedBy:label==='user'?'unknown':'agent',url:'https://mp.weixin.qq.com/cgi-bin/appmsg?appmsgid='+i})),...['x','y','z'].map(label=>({label,openedBy:'unknown',url:'https://example.org/'}))];
+ const drafts=['user','changed','saved'].map(label=>({accountId:'a',receipt:{saved:true},prepared:{space:3,pageLabel:label,url:tabs.find(t=>t.label===label).url,domHash:evidenceHash(evidence)}})),read=[],closed=[];
+ const store={list:k=>k==='drafts'?drafts:[]},task={tabs:async()=>tabs,page:label=>({evaluate:async()=>{read.push(label);return label==='changed'?{...evidence,body:'用户编辑中的正文'}:evidence;},close:async()=>{closed.push(label);tabs=tabs.filter(t=>t.label!==label);}})},AsyncFunction=Object.getPrototypeOf(async function(){}).constructor;
+ const result=await releaseSavedEditor({store,account,script:async code=>{let output='';await new AsyncFunction('taskSpace','console',code)(async()=>task,{log:s=>{output+=s;}});return output;}});
+ assert.deepEqual(closed,['saved']);assert.deepEqual(read,['changed','saved']);assert.equal(result.pageLabel,'home');assert.ok(tabs.some(t=>t.label==='user'));assert.ok(tabs.some(t=>t.label==='changed'));
+});
+test('the editor needed by an interrupted upload is never closed',async()=>{const account={id:'a',space:3,pageLabel:'saved'},store={list:k=>k==='drafts'?[{accountId:'a',receipt:{saved:true},prepared:{space:3,pageLabel:'saved',domHash:'h'}}]:[]};const result=await releaseSavedEditor({store,account,keepPageLabel:'saved',script:async()=>{throw Error('不应操作恢复中的编辑器');}});assert.deepEqual(result.closed,[]);});

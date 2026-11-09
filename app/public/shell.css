@@ -1,0 +1,118 @@
+/* 新增页面结构沿用原工作台的绿色视觉语言；基础控件继续由 styles.css 统一管理。 */
+.sidebar-bottom { margin-top: auto; }
+
+.sidebar-settings {
+  color: #bed5c7;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  border-radius: 5px;
+  margin-bottom: 14px;
+}
+
+.sidebar-settings:hover { background: #244e40; color: #fff; }
+.sidebar-settings.active { background: #2d5948; color: #fff; }
+.brand-mark { font-size: 0; }
+.brand-icon {
+  width: 27px;
+  height: 27px;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+}
+
+.sidebar nav a { align-items: center; }
+.sidebar-icon {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 20px;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.topbar { justify-content: flex-end; }
+
+.connection-test {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: -4px 0 22px;
+}
+
+.connection-test .help { line-height: 1.45; }
+
+.settings-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 26px;
+}
+
+.settings-summary > div {
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: #f9fbf9;
+}
+
+.settings-summary span,
+.settings-summary small { display: block; color: var(--muted); font-size: 11px; }
+.settings-summary strong { display: block; margin: 4px 0; overflow-wrap: anywhere; font-size: 14px; }
+
+.task-create-form { max-width: 900px; }
+
+.task-list-panel { padding: 0; overflow: hidden; }
+.task-list-panel tbody tr:hover { background: #f9fbf9; }
+.task-title-link { color: var(--ink); }
+.task-title-link:hover { color: var(--green); }
+
+.asset-overview {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.asset-panel { min-width: 0; }
+.asset-panel .panel-head { align-items: flex-start; }
+.asset-kicker { margin-bottom: 2px; color: var(--green); font-size: 12px; font-weight: 600; }
+
+.asset-summary {
+  display: flex;
+  gap: 24px;
+  padding: 10px 0 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.asset-summary strong { display: block; font-size: 26px; font-weight: 500; line-height: 1.25; }
+.asset-summary span { display: block; color: var(--muted); font-size: 11px; }
+
+.asset-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 15px 0;
+  border-bottom: 1px solid #edf1ed;
+}
+
+.asset-row:last-of-type { border-bottom: 0; }
+.asset-row > div { min-width: 0; }
+.asset-row .help { margin-top: 3px; }
+.asset-row .badge { flex: 0 0 auto; align-self: flex-start; }
+
+@media (max-width: 1050px) {
+  .asset-overview { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 700px) {
+  .sidebar-bottom { margin-top: 8px; }
+  .sidebar-settings { justify-content: center; padding: 8px 10px; margin: 0; font-size: 12px; }
+  .sidebar-settings .sidebar-icon { display: none; }
+  .topbar > div { width: 100%; justify-content: space-between; }
+  .connection-test { align-items: flex-start; flex-direction: column; }
+  .settings-summary { grid-template-columns: 1fr; }
+  .asset-overview { gap: 14px; }
+}

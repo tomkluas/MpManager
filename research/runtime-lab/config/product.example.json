@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "miniProgram": {
+    "name": "小程序名称",
+    "appId": "",
+    "entryPath": ""
+  },
+  "profile": {
+    "name": "产品名称",
+    "status": "candidate",
+    "positioning": "解决什么问题，给谁使用",
+    "audience": "目标用户",
+    "scenarios": [],
+    "features": [
+      {
+        "id": "feature-1",
+        "text": "已确认的真实功能",
+        "state": "documented",
+        "source": { "sectionId": "manual", "quote": "请填写依据" }
+      }
+    ],
+    "restrictions": [],
+    "forbiddenClaims": []
+  },
+  "sourceDocuments": []
+}

@@ -1,0 +1,6 @@
+{
+  "schemaVersion": 1,
+  "account": { "name": "公众号名称", "appId": "" },
+  "connection": { "mode": "browser", "authenticated": false },
+  "publishing": { "enabled": false, "requiresHumanApproval": true }
+}
